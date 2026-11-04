@@ -1,0 +1,275 @@
+SQL> declare a number := 100;
+  2  b number := 120;
+  3  c number;
+  4  begin c:= a + b;
+  5  DBMS_OUTPUT.PUT_LINE('Sum = ' || C);
+  6  end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> \
+SP2-0042: unknown command "\" - rest of line ignored.
+SQL> /
+Sum = 220                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> PL/SQL Program to Check Number is Odd or Even
+SP2-0734: unknown command beginning "PL/SQL Pro..." - rest of line ignored.
+SQL> declare
+  2  n number:=&n;
+  3  begin
+  4  if mod (n, 2) = 0
+  5  then
+  6  dbms_output.put_line('number is even');
+  7  else
+  8  dbms_output.put_line('number is odd');
+  9  end if;
+ 10  jhrth
+ 11  /
+Enter value for n: 1
+old   2: n number:=&n;
+new   2: n number:=1;
+jhrth
+    *
+ERROR at line 10:
+ORA-06550: line 10, column 5: 
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the 
+following: 
+:= . ( @ % ; 
+
+
+SQL> declare n number := &n;
+  2  begin if mod(n,2)=0 then
+  3  dbms_output.put_line('number is even');
+  4  else dbms_output.put_line('number is odd');
+  5  end if;
+  6  end; /
+  7  /
+Enter value for n: 3
+old   1: declare n number := &n;
+new   1: declare n number := 3;
+end; /
+     *
+ERROR at line 6:
+ORA-06550: line 6, column 6: 
+PLS-00103: Encountered the symbol "/" The symbol "/" was ignored. 
+
+
+SQL> declare n number := &n;
+  2  begin
+  3  if mod (n, 2) = 0
+  4  then
+  5  dbms_output.put_line('number is even');
+  6  else dbms_output.put_line('number is odd');
+  7  end if;
+  8  end;
+  9  /
+Enter value for n: 99
+old   1: declare n number := &n;
+new   1: declare n number := 99;
+number is odd                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> /
+Enter value for n: 99
+old   1: declare n number := &n;
+new   1: declare n number := 99;
+number is odd                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> declare n number;
+  2  fac number := 1;
+  3  i number;
+  4  begin n := &n;
+  5  for i in 1..n loop fac := fac*i;
+  6  end loop;
+  7  dbms_output.put_line('factorial ='||fac);
+  8  end;
+  9  /
+Enter value for n: 9
+old   4: begin n := &n;
+new   4: begin n := 9;
+factorial =362880                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> declare first number:=0;
+  2  second number:=1;
+  3  third number;
+  4  n number:=&n;
+  5  i number;
+  6  begin
+  7  dbms_output.put_line('Fibonacci series is:');
+  8  dbms_output.put_line(first);
+  9  dbms_output.put_line(second);
+ 10  for i in 2..n loop
+ 11  third:=first+second;
+ 12  first:=second;
+ 13  second:=third;
+ 14  dbms_output.put_line(third);
+ 15  end loop;
+ 16  end;
+ 17  /
+Enter value for n: 8
+old   4: n number:=&n;
+new   4: n number:=8;
+Fibonacci series is:                                                            
+0                                                                               
+1                                                                               
+1                                                                               
+2                                                                               
+3                                                                               
+5                                                                               
+8                                                                               
+13                                                                              
+21                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> declare n number;
+  2  i number;
+  3  begin n:= &n;
+  4  for i in 1..20 loop
+  5  dbms_output.put_line(n || ' x ' || i || ' = ' || (n * i));
+  6  end loop;
+  7  end;
+  8  /
+Enter value for n: 15
+old   3: begin n:= &n;
+new   3: begin n:= 15;
+15 x 1 = 15                                                                     
+15 x 2 = 30                                                                     
+15 x 3 = 45                                                                     
+15 x 4 = 60                                                                     
+15 x 5 = 75                                                                     
+15 x 6 = 90                                                                     
+15 x 7 = 105                                                                    
+15 x 8 = 120                                                                    
+15 x 9 = 135                                                                    
+15 x 10 = 150                                                                   
+15 x 11 = 165                                                                   
+15 x 12 = 180                                                                   
+15 x 13 = 195                                                                   
+15 x 14 = 210                                                                   
+15 x 15 = 225                                                                   
+15 x 16 = 240                                                                   
+15 x 17 = 255                                                                   
+15 x 18 = 270                                                                   
+15 x 19 = 285                                                                   
+15 x 20 = 300                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2      n number;
+  3      i number;
+  4      rev number := 0;
+  5      r number;
+  6  
+  7  begin
+  8      n := &n;
+  9  
+ 10      while n > 0
+ 11      loop
+ 12          r := mod(n, 10);
+ 13          rev := (rev * 10) + r;
+ 14          n := trunc(n / 10);
+ 15      end loop;
+ 16  
+ 17      dbms_output.put_line('reverse is ' || rev);
+ 18  
+ 19  end;
+ 20  /
+Enter value for n: 30
+old   8:     n := &n;
+new   8:     n := 30;
+reverse is 3                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2      str1 varchar2(50) := '&str';
+  3      str2 varchar2(50);
+  4      len number;
+  5      i number;
+  6  
+  7  begin
+  8      len := length(str1);
+  9  
+ 10      for i in reverse 1..len
+ 11      loop
+ 12          str2 := str2 || substr(str1, i, 1);
+ 13      end loop;
+ 14  
+ 15      dbms_output.put_line('reverse of string is:' || str2);
+ 16  
+ 17  end;
+ 18  /
+Enter value for str: jaya hey
+old   2:     str1 varchar2(50) := '&str';
+new   2:     str1 varchar2(50) := 'jaya hey';
+reverse of string is:yeh ayaj                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  
+  3  A NUMBER := 10;
+  4  
+  5  B NUMBER := 0;
+  6  
+  7  C NUMBER;
+  8  
+  9  BEGIN
+ 10  
+ 11  C := A / B;
+ 12  
+ 13  DBMS_OUTPUT.PUT_LINE('Result = ' || C);
+ 14  
+ 15  EXCEPTION
+ 16  
+ 17  WHEN ZERO_DIVIDE THEN
+ 18  
+ 19  DBMS_OUTPUT.PUT_LINE('Error: Cannot divide by zero');
+ 20  
+ 21  END;
+ 22  
+ 23  /
+Error: Cannot divide by zero                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  
+  3  A NUMBER := 10;
+  4  
+  5  B NUMBER := 0;
+  6  
+  7  C NUMBER;
+  8  
+  9  BEGIN
+ 10  
+ 11  C := A / B;
+ 12  
+ 13  DBMS_OUTPUT.PUT_LINE('Result = ' || C);
+ 14  
+ 15  EXCEPTION
+ 16  
+ 17  WHEN ZERO_DIVIDE THEN
+ 18  
+ 19  DBMS_OUTPUT.PUT_LINE('Error: Cannot divide by zero');
+ 20  
+ 21  END;
+ 22  
+ 23  /
+Error: Cannot divide by zero                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off
