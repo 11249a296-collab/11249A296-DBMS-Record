@@ -1,0 +1,224 @@
+
+SQL> CREATE TABLE course (course_id NUMBER(3) PRIMARY KEY,course_name VARCHAR2(30) NOT NULL);
+
+Table created.
+
+SQL> create table pupil(roll_no number(5) primary key,name varchar(20) not null,age NUMBER(2),marks NUMBER(5,2),course_id NUMBER(3),FOREIGN KEY (course_id) REFERENCES course(course_id));
+
+Table created.
+
+SQL> insert into course values(&course_id,'&course_name');
+Enter value for course_id: 10
+Enter value for course_name: cse
+old   1: insert into course values(&course_id,'&course_name')
+new   1: insert into course values(10,'cse')
+
+1 row created.
+
+SQL> /
+Enter value for course_id: 20
+Enter value for course_name: it
+old   1: insert into course values(&course_id,'&course_name')
+new   1: insert into course values(20,'it')
+
+1 row created.
+
+SQL> /
+Enter value for course_id: 30
+Enter value for course_name: ece
+old   1: insert into course values(&course_id,'&course_name')
+new   1: insert into course values(30,'ece')
+
+1 row created.
+
+SQL> /
+Enter value for course_id: 40
+Enter value for course_name: mech
+old   1: insert into course values(&course_id,'&course_name')
+new   1: insert into course values(40,'mech')
+
+1 row created.
+
+SQL> /
+Enter value for course_id: 50
+Enter value for course_name: civil
+old   1: insert into course values(&course_id,'&course_name')
+new   1: insert into course values(50,'civil')
+
+1 row created.
+
+SQL> insert into pupil values(&roll_no,'&name',&age,&marks,&course_id);
+Enter value for roll_no: 1
+Enter value for name: arun
+Enter value for age: 20
+Enter value for marks: 90
+Enter value for course_id: 10
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(1,'arun',20,90,10)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 2
+Enter value for name: priya
+Enter value for age: 19
+Enter value for marks: 98
+Enter value for course_id: 10
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(2,'priya',19,98,10)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 3
+Enter value for name: kumar
+Enter value for age: 25
+Enter value for marks: 70
+Enter value for course_id: 40
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(3,'kumar',25,70,40)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 4
+Enter value for name: divya
+Enter value for age: 20
+Enter value for marks: 84
+Enter value for course_id: 30
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(4,'divya',20,84,30)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 5
+Enter value for name: ravi
+Enter value for age: 19
+Enter value for marks: 97
+Enter value for course_id: 10
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(5,'ravi',19,97,10)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 6
+Enter value for name: anu
+Enter value for age: 20
+Enter value for marks: 90
+Enter value for course_id: 20
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(6,'anu',20,90,20)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 7
+Enter value for name: suresh
+Enter value for age: 21
+Enter value for marks: 85
+Enter value for course_id: 50
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(7,'suresh',21,85,50)
+
+1 row created.
+
+SQL> /
+Enter value for roll_no: 8
+Enter value for name: meena
+Enter value for age: 20
+Enter value for marks: 90
+Enter value for course_id: 10
+old   1: insert into pupil values(&roll_no,'&name',&age,&marks,&course_id)
+new   1: insert into pupil values(8,'meena',20,90,10)
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+
+
+SQL> select course_id,count(*) as total_pupils from pupil group by course_id;
+
+ COURSE_ID TOTAL_PUPILS                                                         
+---------- ------------                                                         
+        30            1                                                         
+        20            1                                                         
+        40            1                                                         
+        50            1                                                         
+        10            4                                                         
+
+SQL> SELECT course_id, AVG(marks) AS average_marks from pupil group by course_id;
+
+ COURSE_ID AVERAGE_MARKS                                                        
+---------- -------------                                                        
+        30            84                                                        
+        20            90                                                        
+        40            70                                                        
+        50            85                                                        
+        10         93.75                                                        
+
+SQL> SELECT course_id, sum(marks) AS total_marks from pupil group by course_id;
+
+ COURSE_ID TOTAL_MARKS                                                          
+---------- -----------                                                          
+        30          84                                                          
+        20          90                                                          
+        40          70                                                          
+        50          85                                                          
+        10         375                                                          
+
+SQL> select course_id,MAX(marks) AS highest_mark,MIN(marks) AS lowest_mark from pupil group by course_id;
+
+ COURSE_ID HIGHEST_MARK LOWEST_MARK                                             
+---------- ------------ -----------                                             
+        30           84          84                                             
+        20           90          90                                             
+        40           70          70                                             
+        50           85          85                                             
+        10           98          90                                             
+
+
+SQL> SELECT c.course_name, COUNT(p.roll_no) AS total_students, AVG(p.marks) AS average_marks FROM course c JOIN pupil p ON c.course_id = p.course_id GROUP BY c.course_name;
+
+COURSE_NAME	TOTAL_STUDENTS	AVERAGE_MARKS
+------------	--------------	--------------
+CSE		4		93.75
+ECE		1		84
+IT		1		95
+MECH		1		70
+CIVIL		1		85
+
+SQL> SELECT course_id, COUNT(*) AS total_students FROM pupil GROUP BY course_id HAVING COUNT(*) > 2;
+
+COURSE_ID	TOTAL_STUDENTS
+-----------	----------------
+10		 4
+20		 1
+30		 1
+40		 1
+50		 1		 
+
+SQL> SELECT course_id, AVG(marks) AS average_marks FROM pupil GROUP BY course_id HAVING AVG(marks) > 80;
+
+COURSE_ID	AVERAGE_MARKS
+----------	--------------
+10		93.75
+20		95
+30		84
+40		70
+50		85
+
+SQL> SELECT course_id, MAX(marks) AS highest_mark FROM pupil GROUP BY course_id HAVING MAX(marks) > 90;
+
+COURSE_ID	HIGHEST_MARK
+10		98
+20		95
+30		84
+40		70
+50		85
+
+SQL> spool off
