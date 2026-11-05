@@ -1,0 +1,262 @@
+SQL> create table students
+  2  (
+  3  student_id int primary key,
+  4  Name Varchar(50)
+  5  );
+
+Table created.
+
+SQL> desc students
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+
+SQL> insert into students values (101,'Arun');
+
+1 row created.
+
+SQL> insert into students values (175,'Varun');
+
+1 row created.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       101 Arun                                                                 
+                                                                                
+                                                                                
+       175 Varun                                                                
+                                                                                
+                                                                                
+
+SQL> update students set email = 'arun@gmail.com' where student_id = 101;
+
+1 row updated.
+
+SQL> update students set email = 'varun@gmail.com' where student_id = 175;
+
+1 row updated.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       101 Arun                                                                 
+arun@gmail.com                                                                  
+                                                                                
+       175 Varun                                                                
+varun@gmail.com                                                                 
+                                                                                
+
+SQL> alter table students add age int check(age>=15);
+
+Table altered.
+
+SQL> desc students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+ EMAIL                                              VARCHAR2(100)
+ AGE                                                NUMBER(38)
+
+SQL> update students set age = 18 where student_id = 175;
+
+1 row updated.
+
+SQL> update students set age = 16 where student_id = 101;
+
+1 row updated.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE                                                                      
+----------                                                                      
+       101 Arun                                                                 
+arun@gmail.com                                                                  
+        16                                                                      
+                                                                                
+       175 Varun                                                                
+varun@gmail.com                                                                 
+        18                                                                      
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE                                                                      
+----------                                                                      
+                                                                                
+
+SQL> alter table students add city varchar(30) default'Hyderabad';
+
+Table altered.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- ------------------------------                                       
+       101 Arun                                                                 
+arun@gmail.com                                                                  
+        16 Hyderabad                                                            
+                                                                                
+       175 Varun                                                                
+varun@gmail.com                                                                 
+        18 Hyderabad                                                            
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- ------------------------------                                       
+                                                                                
+
+SQL> insert into students values(190,'suresh','suresh@gmail.com',18,'dehradun');
+
+1 row created.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- ------------------------------                                       
+       101 Arun                                                                 
+arun@gmail.com                                                                  
+        16 Hyderabad                                                            
+                                                                                
+       175 Varun                                                                
+varun@gmail.com                                                                 
+        18 Hyderabad                                                            
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- ------------------------------                                       
+                                                                                
+       190 suresh                                                               
+suresh@gmail.com                                                                
+        18 dehradun                                                             
+ 
+SQL> create table customer (cust_id int primary key,name varchar(40) not null,mailid varchar(60) unique,salary int check(salary>=25000),location varchar(40) default'banglore');
+
+Table created.
+
+SQL> insert into customer values(&cust_id,'&name','&mailid',&salary,'&location');
+Enter value for cust_id: 101
+Enter value for name: rahul
+Enter value for mailid: rahul@gmail.com
+Enter value for salary: 28000
+Enter value for location: hyderabad
+old   1: insert into customer values(&cust_id,'&name','&mailid',&salary,'&location')
+new   1: insert into customer values(101,'rahul','rahul@gmail.com',28000,'hyderabad')
+
+1 row created.
+
+SQL> /
+Enter value for cust_id: 102
+Enter value for name: simran
+Enter value for mailid: simran@gmail.com
+Enter value for salary: 30000
+Enter value for location: default
+old   1: insert into customer values(&cust_id,'&name','&mailid',&salary,'&location')
+new   1: insert into customer values(102,'simran','simran@gmail.com',30000,'default')
+
+1 row created.
+
+SQL> /
+Enter value for cust_id: 103
+Enter value for name: anjali
+Enter value for mailid: anjalai@gmail.com
+Enter value for salary: 50000
+Enter value for location: mumbai
+old   1: insert into customer values(&cust_id,'&name','&mailid',&salary,'&location')
+new   1: insert into customer values(103,'anjali','anjalai@gmail.com',50000,'mumbai')
+
+1 row created.
+
+SQL> /
+Enter value for cust_id: 104
+Enter value for name: tina
+Enter value for mailid: tina@gmail.com
+Enter value for salary: 55000
+Enter value for location: delhi
+old   1: insert into customer values(&cust_id,'&name','&mailid',&salary,'&location')
+new   1: insert into customer values(104,'tina','tina@gmail.com',55000,'delhi')
+
+1 row created.
+
+SQL> /
+Enter value for cust_id: 105
+Enter value for name: anu
+Enter value for mailid: anu@gmail.com
+Enter value for salary: 60000
+Enter value for location: amaravathi
+old   1: insert into customer values(&cust_id,'&name','&mailid',&salary,'&location')
+new   1: insert into customer values(105,'anu','anu@gmail.com',60000,'amaravathi')
+
+1 row created.
+
+SQL> select * from customer;
+
+   CUST_ID NAME                                                                 
+---------- ----------------------------------------                             
+MAILID                                                           SALARY         
+------------------------------------------------------------ ----------         
+LOCATION                                                                        
+----------------------------------------                                        
+       101 rahul                                                                
+rahul@gmail.com                                                   28000         
+hyderabad                                                                       
+                                                                                
+       102 simran                                                               
+simran@gmail.com                                                  30000         
+default                                                                         
+
+   CUST_ID NAME                                                                 
+---------- ----------------------------------------                             
+MAILID                                                           SALARY         
+------------------------------------------------------------ ----------         
+LOCATION                                                                        
+----------------------------------------                                        
+                                                                                
+       103 anjali                                                               
+anjalai@gmail.com                                                 50000         
+mumbai                                                                          
+                                                                                
+       104 tina                                                                 
+tina@gmail.com                                                    55000         
+
+   CUST_ID NAME                                                                 
+---------- ----------------------------------------                             
+MAILID                                                           SALARY         
+------------------------------------------------------------ ----------         
+LOCATION                                                                        
+----------------------------------------                                        
+delhi                                                                           
+                                                                                
+       105 anu                                                                  
+anu@gmail.com                                                     60000         
+amaravathi                                                                      
+                                                                                
+
+SQL> spool off
