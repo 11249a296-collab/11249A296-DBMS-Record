@@ -1,0 +1,41 @@
+SQL> create table students
+  2  (
+  3  student_id int primary key,
+  4  Name Varchar(50)
+  5  );
+
+Table created.
+
+SQL> desc students
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+
+SQL> insert into students values (101,'Arun');
+
+1 row created.
+
+SQL> insert into students values (175,'Varun');
+
+1 row created.
+
+SQL> create table employees (emp_id int,Name Varchar(60) Not Null);
+
+Table created.
+
+SQL> insert into employees values(123,'Raju');
+
+1 row created.
+
+SQL> insert into employees values(143,'Rajesh');
+
+1 row created.
+
+SQL> select * from employees;
+
+    EMP_ID NAME                                                                 
+---------- ------------------------------------------------------------         
+       123 Raju                                                                 
+       143 Rajesh                                                               
+
