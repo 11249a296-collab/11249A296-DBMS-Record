@@ -1,0 +1,31 @@
+SQL> select * from kid;
+
+    STU_ID NAME          DEPT_ID                                                
+---------- ---------- ----------                                                
+         1 amith              20                                                
+         2 priya              25                                                
+         3 arjun              30                                                
+         4 anand              20                                                
+         5 rupa               25                                                
+         6 sam                30                                                
+
+6 rows selected.
+
+SQL> create index idx_DEPT_ID on kid(DEPT_ID);
+
+Index created.
+
+SQL> SELECT INDEX_NAME
+  2  FROM USER_INDEXES
+  3  WHERE TABLE_NAME = 'KID';
+
+INDEX_NAME                                                                      
+------------------------------                                                  
+SYS_C0034672                                                                    
+IDX_DEPT_ID                                                                     
+
+SQL> drop index idx_DEPT_ID;
+
+Index dropped.
+
+SQL> spool off
