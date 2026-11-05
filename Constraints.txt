@@ -1,0 +1,279 @@
+SQL> create table stud
+  2  (stud_id int primary key,
+  3  Name varchar(50)
+  4  );
+
+Table created.
+
+SQL> insert into stud values
+  2  (101,'varun');
+
+1 row created.
+
+SQL> insert into stud values
+  2  (102,'arun');
+
+1 row created.
+
+SQL> desc stud
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUD_ID                                   NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+
+
+SQL> create table emp
+  2  (emp_id int primary key,
+  3  Name varchar(50) Not Null
+  4  );
+
+Table created.
+
+SQL> insert into emp values
+  2  (201,'karan');
+
+1 row created.
+
+SQL> insert into emp values
+  2  (202,'arjun');
+
+1 row created.
+
+SQL> desc emp
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+
+SQL> alter table stud add email varchar(100) unique;
+
+Table altered.
+
+SQL> desc stud
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUD_ID                                   NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+ EMAIL                                              VARCHAR2(100)
+
+SQL> update stud set email = 'varun@gmail.com'where stud_id = 101;
+
+1 row updated.
+
+SQL> update stud set email = 'arun@gmail.com'where stud_id = 102;
+
+1 row updated.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       101 varun                                                                
+varun@gmail.com                                                                 
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+                                                                                
+
+SQL> alter table stud add age int check(age>=15);
+
+Table altered.
+
+SQL> desc stud;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUD_ID                                   NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+ EMAIL                                              VARCHAR2(100)
+ AGE                                                NUMBER(38)
+
+SQL> update stud set age = 18 where stud_id = 101;
+
+1 row updated.
+
+SQL> update stud set age = 15 where stud_id = 102;
+
+1 row updated.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE                                                                      
+----------                                                                      
+       101 varun                                                                
+varun@gmail.com                                                                 
+        18                                                                      
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+        15                                                                      
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE                                                                      
+----------                                                                      
+                                                                                
+
+SQL> alter table stud add city varchar(50) default'newyork'
+  2  
+SQL> 
+SQL> alter table stud add city varchar(50) default'newyork';
+
+Table altered.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+       101 varun                                                                
+varun@gmail.com                                                                 
+        18 newyork                                                              
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+        15 newyork                                                              
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+                                                                                
+
+SQL> update stud set city = 'neighbour house' where stud_id = 102;
+
+1 row updated.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+       101 varun                                                                
+varun@gmail.com                                                                 
+        18 newyork                                                              
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+        15 neighbour house                                                      
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+                                                                                
+
+SQL> alter table stud add city varchar(50) default'bangalore';
+alter table stud add city varchar(50) default'bangalore'
+                     *
+ERROR at line 1:
+ORA-01430: column being added already exists in table 
+
+
+SQL> update stud set city = 'bangalore' where stud_id = 101;
+
+1 row updated.
+
+SQL> update stud set city = 'kashmir' where stud_id = 102;
+
+1 row updated.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+       101 varun                                                                
+varun@gmail.com                                                                 
+        18 bangalore                                                            
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+        15 kashmir                                                              
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+                                                                                
+
+SQL> update stud set city = 'neighbour,  house' where stud_id = 102;
+
+1 row updated.
+
+SQL> update stud set city = 'mumbai' where stud_id = 102;
+
+1 row updated.
+
+SQL> select * from stud;
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+       101 varun                                                                
+varun@gmail.com                                                                 
+        18 bangalore                                                            
+                                                                                
+       102 arun                                                                 
+arun@gmail.com                                                                  
+        15 mumbai                                                               
+
+   STUD_ID NAME                                                                 
+---------- --------------------------------------------------                   
+EMAIL                                                                           
+--------------------------------------------------------------------------------
+       AGE CITY                                                                 
+---------- --------------------------------------------------                   
+                                                                                
+
+SQL> Parent Table DEPARTMENT
+CREATE TABLE DEPARTMENT
+(
+Dept_ID INT PRIMARY KEY,
+Dept_Name VARCHAR(30)
+);
+Insert data:
+INSERT INTO DEPARTMENT VALUES
+(1, 'CSE'),
+(2, 'ECE'),
+(3, 'IT');
+Child Table STUDENT
+CREATE TABLE STUDENT
+(
+Student_ID INT PRIMARY KEY,
+Name VARCHAR(50),
+Dept_ID INT,
+FOREIGN KEY (Dept_ID)
+REFERENCES DEPARTMENT(Dept_ID)
+);
+
+STUDENT_ID	NAME	DEPT_ID
+101		Arun	1
+102		Bala	2
+103		Kumar	1
+104		Ravi	3
