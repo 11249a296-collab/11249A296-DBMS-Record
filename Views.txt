@@ -1,0 +1,68 @@
+SQL> select * from kid;
+
+    STU_ID NAME          DEPT_ID                                                
+---------- ---------- ----------                                                
+         1 amith              20                                                
+         2 priya              25                                                
+         3 arjun              30                                                
+         4 anand              20                                                
+         5 rupa               25                                                
+         6 sam                30                                                
+
+6 rows selected.
+
+SQL> CREATE VIEW kid_view AS select STU_ID,NAME,DEPT_ID from kid;
+
+View created.
+
+SQL> update kid_view set department = 'cse' where DEPT_ID = 25;
+update kid_view set department = 'cse' where DEPT_ID = 25
+                    *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> update kid_view set dept_name = 'cse' where DEPT_ID = 25;
+update kid_view set dept_name = 'cse' where DEPT_ID = 25
+                    *
+ERROR at line 1:
+ORA-00904: "DEPT_NAME": invalid identifier 
+
+
+SQL> update kid_view set DEPT_NAME = 'cse' where DEPT_ID = 25;
+update kid_view set DEPT_NAME = 'cse' where DEPT_ID = 25
+                    *
+ERROR at line 1:
+ORA-00904: "DEPT_NAME": invalid identifier 
+
+
+SQL> update kid_view set DEPT_NAME = 'cse' where STU_ID = 20;
+update kid_view set DEPT_NAME = 'cse' where STU_ID = 20
+                    *
+ERROR at line 1:
+ORA-00904: "DEPT_NAME": invalid identifier 
+
+
+SQL> update kid_view set DEPT_NAME = 'cse' where DEPT_ID = 25;
+update kid_view set DEPT_NAME = 'cse' where DEPT_ID = 25
+                    *
+ERROR at line 1:
+ORA-00904: "DEPT_NAME": invalid identifier 
+
+
+SQL> DESC kid;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STU_ID                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ DEPT_ID                                            NUMBER(38)
+
+SQL> update kid_view set DEPT_ID = 20 where STU_ID = 1;
+
+1 row updated.
+
+SQL> drop view kid_view;
+
+View dropped.
+
+SQL> spool off
