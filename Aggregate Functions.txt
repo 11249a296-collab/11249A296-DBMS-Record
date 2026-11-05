@@ -1,0 +1,81 @@
+SQL> create table bot(id int primary key,name varchar(20),marks int);
+
+Table created.
+
+SQL> insert into bot values(&id,'&name',&marks);
+Enter value for id: 1
+Enter value for name: prabhas
+Enter value for marks: 93
+old   1: insert into bot values(&id,'&name',&marks)
+new   1: insert into bot values(1,'prabhas',93)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for name: priya
+Enter value for marks: 98
+old   1: insert into bot values(&id,'&name',&marks)
+new   1: insert into bot values(2,'priya',98)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: manasa
+Enter value for marks: 90
+old   1: insert into bot values(&id,'&name',&marks)
+new   1: insert into bot values(3,'manasa',90)
+
+1 row created.
+
+
+SQL> /
+Enter value for id: 4
+Enter value for name: deva
+Enter value for marks: 91
+old   1: insert into bot values(&id,'&name',&marks)
+new   1: insert into bot values(4,'deva',91)
+
+1 row created.
+
+SQL> select count(*) from bot;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         4                                                                      
+
+SQL> SELECT SUM(marks) FROM bot;
+
+SUM(MARKS)                                                                      
+----------                                                                      
+       372                                                                      
+
+SQL> SELECT AVG(marks) FROM bot;
+
+AVG(MARKS)                                                                      
+----------                                                                      
+        93                                                                      
+
+SQL> SELECT max(marks) FROM bot;
+
+MAX(MARKS)                                                                      
+----------                                                                      
+        98                                                                      
+
+SQL> SELECT min(marks) FROM bot;
+
+MIN(MARKS)                                                                      
+----------                                                                      
+        90                                                                      
+
+SQL> select * from bot;
+
+        ID NAME                      MARKS                                      
+---------- -------------------- ----------                                      
+         1 prabhas                      93                                      
+         2 priya                        98                                      
+         3 manasa                       90                                      
+         4 deva                         91                                      
+
+SQL> spool off

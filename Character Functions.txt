@@ -1,0 +1,80 @@
+SQL> select upper('hello world')from dual;
+
+UPPER('HELL                                                                     
+-----------                                                                     
+HELLO WORLD                                                                     
+
+SQL> select lower('hello world')from dual;
+
+LOWER('HELL                                                                     
+-----------                                                                     
+hello world                                                                     
+
+SQL> select initcap('hello world')from dual;
+
+INITCAP('HE                                                                     
+-----------                                                                     
+Hello World                                                                     
+
+SQL> select length('hello world')from dual;
+
+LENGTH('HELLOWORLD')                                                            
+--------------------                                                            
+                  11                                                            
+
+SQL> select substr('management',1,6) from dual;
+
+SUBSTR                                                                          
+------                                                                          
+manage                                                                          
+
+SQL> select instr('management','e') from dual;
+
+INSTR('MANAGEMENT','E')                                                         
+-----------------------                                                         
+                      6                                                         
+
+SQL> 
+SQL> select replace('management','oracle dbms') from dual;
+
+REPLACE('M                                                                      
+----------                                                                      
+management                                                                      
+
+SQL> select replace('management','dbms') from dual;
+
+REPLACE('M                                                                      
+----------                                                                      
+management                                                                      
+
+SQL> select replace('management','ment','r') from dual;
+
+REPLACE                                                                         
+-------                                                                         
+manager                                                                         
+
+SQL> SELECT CONCAT('Oracle', ' Database') FROM dual;
+
+CONCAT('ORACLE'                                                                 
+---------------                                                                 
+Oracle Database                                                                 
+
+SQL> SELECT TRIM(' Oracle ') FROM dual;
+
+TRIM('                                                                          
+------                                                                          
+Oracle                                                                          
+
+SQL> SELECT LTRIM(' Oracle') FROM dual;
+
+LTRIM(                                                                          
+------                                                                          
+Oracle                                                                          
+
+SQL> SELECT RTRIM('Oracle ') FROM dual;
+
+RTRIM(                                                                          
+------                                                                          
+Oracle                                                                          
+
+SQL> spool off

@@ -1,0 +1,37 @@
+SQL> SELECT ROUND(45.6789, 2) from dual;
+
+45.68
+
+SQL> SELECT TRUNC(45.6789, 2) from dual;
+
+45.67
+
+SQL> SELECT CEIL(45.2) from dual;
+
+46
+
+SQL> SELECT FLOOR(45.8) from dual;
+
+45
+
+SQL> SELECT MOD(10,3) from dual;
+
+1
+
+SQL> SELECT ABS(-25) from dual;
+
+25
+
+SQL> SELECT POWER(2, 3) from dual;
+
+8
+
+SQL> SELECT  SQRT(25) from dual;
+
+5
+
+SQL> SELECT SIGN(-50) from dual;
+
+-1
+
+SQL> spool off

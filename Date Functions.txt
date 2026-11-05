@@ -1,0 +1,50 @@
+SQL> SELECT SYSDATE FROM dual;
+
+SYSDATE                                                                         
+---------                                                                       
+09-OCT-26                                                                       
+
+SQL> SELECT CURRENT_DATE FROM dual;
+
+CURRENT_D                                                                       
+---------                                                                       
+09-OCT-26                                                                       
+
+                                                                    
+SQL> SELECT ADD_MONTHS(SYSDATE, 3) from dual;
+
+ADD_MONTH                                                                       
+---------                                                                       
+09-JAN-27                                                                       
+
+SQL> select months_between(date'2026-12-02',date'2026-09-01') from dual;
+
+MONTHS_BETWEEN(DATE'2026-12-02',DATE'2026-09-01')                               
+-------------------------------------------------                               
+                                       3.03225806                               
+
+SQL> select last_day(sysdate) from dual;
+
+LAST_DAY(                                                                       
+---------                                                                       
+31-OCT-26                                                                       
+
+SQL> select next_day(sysdate,'sunday') from dual;
+
+NEXT_DAY(                                                                       
+---------                                                                       
+11-OCT-26                                                                       
+
+SQL> select round(sysdate,'month') from dual;
+
+ROUND(SYS                                                                       
+---------                                                                       
+01-OCT-26                                                                       
+
+SQL> select trunc(sysdate,'month') from dual;
+
+TRUNC(SYS                                                                       
+---------                                                                       
+01-OCT-26                                                                       
+
+SQL> spool off
