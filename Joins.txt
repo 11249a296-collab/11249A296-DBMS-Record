@@ -1,0 +1,216 @@
+SQL>  create table kid(stu_id int primary key,name varchar(10),dept_id int);
+
+Table created.
+
+SQL>  insert into kid values(&stu_id,'&name',&dept_id);
+Enter value for stu_id: 1
+Enter value for name: amith
+Enter value for dept_id: 20
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(1,'amith',20)
+
+1 row created.
+
+SQL> /
+Enter value for stu_id: 2
+Enter value for name: priya
+Enter value for dept_id: 25
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(2,'priya',25)
+
+1 row created.
+
+SQL> /
+Enter value for stu_id: 3
+Enter value for name: arjun
+Enter value for dept_id: 30
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(3,'arjun',30)
+
+1 row created.
+
+SQL> /
+Enter value for stu_id: 4
+Enter value for name: anand
+Enter value for dept_id: 20
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(4,'anand',20)
+
+1 row created.
+ 
+SQL> /
+Enter value for stu_id: 5
+Enter value for name: rupa
+Enter value for dept_id: 25
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(5,'rupa',25)
+
+1 row created.
+
+SQL> /
+Enter value for stu_id: 6
+Enter value for name: sam
+Enter value for dept_id: 30
+old   1:  insert into kid values(&stu_id,'&name',&dept_id)
+new   1:  insert into kid values(6,'sam',30)
+
+1 row created.
+
+SQL> select * from kid;
+
+    STU_ID NAME          DEPT_ID                                                
+---------- ---------- ----------                                                
+         1 amith              20                                                
+         2 priya              25                                                
+         3 arjun              30                                                
+         4 anand              20                                                
+         5 rupa               25                                                
+         6 sam                30                                                
+
+6 rows selected.
+
+
+SQL> create table department(dept_id int primary key,dept_name varchar(15));
+
+Table created.
+
+SQL> insert into department values(&dept_id,'&dept_name');
+Enter value for dept_id: 20
+Enter value for dept_name: mech
+old   1: insert into department values(&dept_id,'&dept_name')
+new   1: insert into department values(20,'mech')
+
+1 row created.
+
+SQL> /
+Enter value for dept_id: 25
+Enter value for dept_name: cse
+old   1: insert into department values(&dept_id,'&dept_name')
+new   1: insert into department values(25,'cse')
+
+1 row created.
+
+SQL> /
+Enter value for dept_id: 30
+Enter value for dept_name: ece
+old   1: insert into department values(&dept_id,'&dept_name')
+new   1: insert into department values(30,'ece')
+
+1 row created.
+
+SQL> select * from department;
+
+   DEPT_ID DEPT_NAME                                                            
+---------- ---------------                                                      
+        20 mech                                                                 
+        25 cse                                                                  
+        30 ece                                                                  
+
+SQL> select k.stu_id,k.name,k.dept_id from kid k inner join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME          DEPT_ID                                                
+---------- ---------- ----------                                                
+         1 amith              20                                                
+         2 priya              25                                                
+         3 arjun              30                                                
+         4 anand              20                                                
+         5 rupa               25                                                
+         6 sam                30                                                
+
+6 rows selected.
+
+
+SQL> select k.stu_id,k.name,d.dept_name from kid k inner join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME       DEPT_NAME                                                 
+---------- ---------- ---------------                                           
+         1 amith      mech                                                      
+         2 priya      cse                                                       
+         3 arjun      ece                                                       
+         4 anand      mech                                                      
+         5 rupa       cse                                                       
+         6 sam        ece                                                       
+
+6 rows selected.
+
+SQL> select k.stu_id,k.name,d.dept_name from kid k left join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME       DEPT_NAME                                                 
+---------- ---------- ---------------                                           
+         4 anand      mech                                                      
+         1 amith      mech                                                      
+         5 rupa       cse                                                       
+         2 priya      cse                                                       
+         6 sam        ece                                                       
+         3 arjun      ece                                                       
+
+6 rows selected.
+
+SQL> select k.stu_id,k.name,d.dept_name from kid k right join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME       DEPT_NAME                                                 
+---------- ---------- ---------------                                           
+         1 amith      mech                                                      
+         2 priya      cse                                                       
+         3 arjun      ece                                                       
+         4 anand      mech                                                      
+         5 rupa       cse                                                       
+         6 sam        ece                                                       
+
+6 rows selected.
+
+SQL> select * from kid k left join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME          DEPT_ID    DEPT_ID DEPT_NAME                           
+---------- ---------- ---------- ---------- ---------------                     
+         4 anand              20         20 mech                                
+         1 amith              20         20 mech                                
+         5 rupa               25         25 cse                                 
+         2 priya              25         25 cse                                 
+         6 sam                30         30 ece                                 
+         3 arjun              30         30 ece                                 
+
+6 rows selected.
+
+SQL> select k.stu_id,k.name,d.dept_name from kid k full outer join department d on k.dept_id = d.dept_id;
+
+    STU_ID NAME       DEPT_NAME                                                 
+---------- ---------- ---------------                                           
+         1 amith      mech                                                      
+         2 priya      cse                                                       
+         3 arjun      ece                                                       
+         4 anand      mech                                                      
+         5 rupa       cse                                                       
+         6 sam        ece                                                       
+
+6 rows selected.
+
+SQL> select * from kid cross join department;
+
+    STU_ID NAME          DEPT_ID    DEPT_ID DEPT_NAME                           
+---------- ---------- ---------- ---------- ---------------                     
+         1 amith              20         20 mech                                
+         2 priya              25         20 mech                                
+         3 arjun              30         20 mech                                
+         4 anand              20         20 mech                                
+         5 rupa               25         20 mech                                
+         6 sam                30         20 mech                                
+         1 amith              20         25 cse                                 
+         2 priya              25         25 cse                                 
+         3 arjun              30         25 cse                                 
+         4 anand              20         25 cse                                 
+         5 rupa               25         25 cse                                 
+
+    STU_ID NAME          DEPT_ID    DEPT_ID DEPT_NAME                           
+---------- ---------- ---------- ---------- ---------------                     
+         6 sam                30         25 cse                                 
+         1 amith              20         30 ece                                 
+         2 priya              25         30 ece                                 
+         3 arjun              30         30 ece                                 
+         4 anand              20         30 ece                                 
+         5 rupa               25         30 ece                                 
+         6 sam                30         30 ece                                 
+
+18 rows selected.
+
+SQL> spool off
